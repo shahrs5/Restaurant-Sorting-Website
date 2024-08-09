@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Restaurant Recommendations</h1>
+
+    <p>Showing {{ restaurants|length }} results.</p>
+
+    {% if restaurants|length > 0 %}
+      <table class = "table">
+        <thead>
+            
+          <tr>
+            <th scope="col">Restaurant Name</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Actions</th>
+          </tr>
+          {% for restaurant in restaurants %}
+          <tr>
+          </thead>
+          <tbody>    
+            <td>
+              {{ restaurant[1] }}
+            </td>
+            <td>
+              {{ restaurant[2] }}
+            </td>
+            <td>
+              <form method="post" action="/favourites">
+                <input type="hidden" name="restaurant_id" value="{{ restaurant[0] }}">
+                <input type="hidden" name="_method" value="POST">
+
+                {% if session['username'] %}
+                  <button type="submit">Add to favourites</button>
+                {% else %}
+                  <button type="submit" disabled>Add to favourites</button>
+                {% endif %}
+            </form>
+            </td>
+
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+
+      <P>{% for item in search_term1 %}
+        {{ item }},
+        {% endfor %}
+      </P>      
+    {% else %}
+      <div>No restaurants found that match your search criteria.</div>
+    {% endif %}
+
+{% endblock %}

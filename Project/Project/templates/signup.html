@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+
+<main class="text-center">
+    <form method="post" class="form-signin">
+      <h1 class="h3 mb-3 fw-normal mt-3">Create a new account</h1>
+  
+      <div class="form-floating">
+        <input type="text" class="form-control" id="username" name="username" placeholder="username">
+        <label for="floatingInput">Enter a username</label>
+      </div>
+      <div class="form-floating mt-3">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        <label for="floatingPassword">Enter a password</label>
+      </div>
+  
+      <button class="w-100 btn btn-lg btn-primary mt-5" type="submit">Sign Up</button>
+    </form>
+
+    <div id="liveAlertPlaceholder">{{ msg }}</div>
+  </main>
+{% endblock %}

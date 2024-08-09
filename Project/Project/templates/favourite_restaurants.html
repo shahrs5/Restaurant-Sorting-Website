@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <body>
+    <header>
+      <h1>My Favourite Restaurants</h1>
+    </header>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Restaurant Name</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for restaurant in restaurants %}
+          <tr>
+            <td>{{ restaurant[1] }}</td>
+            <td>{{ restaurant[2] }}</td>
+            <td>
+              <form method="POST" action="/favourites">
+                <input type="hidden" name="restaurant_id" value="{{ restaurant[0] }}">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">Delete favourite</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+{% endblock %}

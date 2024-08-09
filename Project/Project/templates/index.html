@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main>
+		<h1 class="mt-5">Welcome to our restaurant app!</h1>
+
+		<p>Welcome to the Restaurant Finder! Are you looking for a restaurant that does a particular
+			 type of food? Use Restaurant Finder to search for your specific restaurant, mark it as a 
+			 favourite and enjoy the food!</p>
+			 <img src="../Static/food.webp" class="img-thumbnail mb-3" alt="Image">
+		<div class="d-grid gap-2" width ="800">
+			<a href="{{url_for('search_restaurants')}}" class="btn btn-primary">Find Restaurants</a>
+			{% if session['username'] %}
+				<a href="{{url_for('favourite_restaurants')}}" class="btn btn-primary">My Favourites</a>
+			{% endif %}  
+		  </div>
+		
+	</main>
+{% endblock %}

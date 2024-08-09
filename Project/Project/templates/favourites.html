@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Welcome, {{ session['username'] }}!</h1>
+	{% if error %}
+		<p style="color: red">{{ error }}</p>
+	{% endif %}
+
+	Found a favourite restaurant? Why not add it to your favourites for much easier access. To get started, search for a restaurant and then add it.
+
+	<h2>Add Favorite Restaurant</h2>
+	<form method="POST" action="{{ url_for('favourites') }}">
+		<label>Restaurant:</label>
+		<input type="text" name="restaurant">
+		<input type="submit" value="Add">
+	</form>
+	<br>
+	<h2>Your Favorite Restaurants:</h2>
+
+	<p>These are the restaurants that you have marked as your favourites. </p>
+
+	{% if restaurants %}
+		<ul>
+			{% for restaurant in restaurants %}
+				<li>{{ restaurant }}</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>You haven't added any favorite restaurants yet.</p>
+	{% endif %}
+	<a href="/">Logout</a>
+{% endblock %}

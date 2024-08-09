@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="m-5 ">
+
+	<h1>Find the best restaurant</h1>
+
+		<form method="POST" action="/search">
+			<div class="mb-3">
+			<label for="search" class="form-label">Search:</label>
+			<input class="form-control mb-3"  type="text" id="search" name="name" placeholder="Restaurant Name">
+
+			<label for="dish" class="form-label">Dish</label>
+			<select id="dish" name="dish" class="form-select mb-5" aria-label="Dish">
+				<option value="">--Please choose an option--</option>
+				{% for dish in dishes %}
+					<option value="{{ dish[0] }}">{{ dish[1] }}</option>
+				{% endfor %}
+
+				<option value="Any">Any</option>
+			</select>
+
+			<h4>Filters</h4>
+
+			<label for="cuisine" class="form-label">Cuisine</label>
+			<select id="cuisine" name="cuisine" class="form-select" aria-label="Cuisine">
+				<option value="">--Please choose an option--</option>
+				<option value="Indian">Indian</option>
+				<option value="Western">Western</option>
+				<option value="Thai">Thai</option>
+				<option value="Malay">Malay</option>
+				<option value="Any">Any</option>
+			</select>
+			<label for="budget" class="form-label">Budget</label>
+			<select id="budget" name="budget" class="form-select" aria-label="Budget">
+				<option value="">--Please choose an option--</option>
+				<option value="Low">Low</option>
+				<option value="Medium">Medium</option>
+				<option value="High">High</option>
+				<option value="Any">Any</option>
+			</select>
+
+			<button type="submit" class="btn btn-primary mt-3">Search</button>
+		</div>
+		</form>
+	</main>
+	<footer>
+
+	</footer>
+
+{% endblock %}
